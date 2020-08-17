@@ -1,0 +1,18 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400);
+
+.App h1 {
+  font: 400 30px roboto, "Open Sans", Helvetica, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.App h2 {
+  font: 300 22px roboto, "Open Sans", Helvetica, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.App .logo {
+  position: relative;
+  top: 7px;
+}
