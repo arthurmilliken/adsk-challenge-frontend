@@ -16,7 +16,7 @@ function MovieTiles(props) {
       return app.setState({
         currentView: targetView,
         searchDetail: response.data,
-      })
+      });
     }
     else {
       const url = `/api/myMovieList/${imdbID}`;

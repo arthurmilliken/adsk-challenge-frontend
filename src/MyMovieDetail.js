@@ -29,12 +29,12 @@ function MyMovieDetail(props) {
   const handleChange = async(e) => {
     e.preventDefault();
     alert('TODO: implement this feature.');
-  }
+  };
 
   const handleClick = async(e) => {
     e.preventDefault();
     alert('TODO: implement this feature.');
-  }
+  };
 
   return (
     <div className="MyMovieDetail">
