@@ -9,13 +9,18 @@ import view from './view';
 import './App.css';
 import './tabs.css';
 
+/**
+ * The primary application component. This is the only component (and thus
+ * the only state) in the entire application. All changes to application state
+ * are made by calling app.setState() on this object.
+ */
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.clickMyMovies = this.clickMyMovies.bind(this);
     this.clickSearch = this.clickSearch.bind(this);
 
-    // Initial state
+    // Initial state.
     this.state = {
       currentView: view.search,
       searchForm: {
@@ -54,19 +59,21 @@ class App extends React.Component {
   }
 
   render() {
+    // Select which component to render based on the state.currentView
+    // property.
     const currentView = this.state.currentView;
     let content;
     if (currentView === view.search) {
-      content = <Search app={this} />
+      content = <Search app={this} />;
     }
     else if (currentView === view.searchDetail) {
-      content = <SearchDetail app={this} />
+      content = <SearchDetail app={this} />;
     }
     else if (currentView === view.myMovies) {
-      content = <MyMovies app={this} />
+      content = <MyMovies app={this} />;
     }
     else if (currentView === view.myMovieDetail) {
-      content = <MyMovieDetail app={this} />
+      content = <MyMovieDetail app={this} />;
     }
 
     return (

@@ -5,12 +5,17 @@ import MovieTiles from './MovieTiles';
 import view from './view';
 import './button.css';
 
+/**
+ * Allows the user to search OMDB for movie titles, and renders the results
+ * as a collection of MovieTiles.
+ */
 function Search(props) {
   const app = props.app;
   const state = app.state;
   const form = state.searchForm;
   const results = state.searchResults;
 
+  // Event handler for updating the search form
   const updateForm = (key, value) => {
     form[key] = value;
     app.setState({
@@ -18,6 +23,7 @@ function Search(props) {
     });
   };
 
+  // Asynchronously execute search against OMDB proxy service.
   const performSearch = async(e) => {
     e.preventDefault();
     if (form.searchText.trim() === '') {
