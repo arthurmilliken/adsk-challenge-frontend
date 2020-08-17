@@ -12,28 +12,45 @@ import './tabs.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.clickMyMovies = this.clickMyMovies.bind(this);
+    this.clickSearch = this.clickSearch.bind(this);
+
     // Initial state
     this.state = {
       currentView: view.search,
-      search: {
-        form: {
-          searchText: '',
-          type: '',
-          year: '',
-        },
-        results: null,
-        detail: null,
+      searchForm: {
+        searchText: '',
+        type: '',
+        year: '',
       },
-      myMovies: {
-        form: {
-          sort: '',
-          watched: false,
-          rating: '',
-        },
-        movies: null,
-        detail: null,
+      searchResults: null,
+      searchDetail: null,
+      myMoviesForm: {
+        sort: '',
+        watched: '',
+        rating: '',
+      },
+      myMovies: null,
+      myMovieDetail: null,
+      myMovieDetailForm: {
+        comment: '',
+        rating: '',
+        watched: false,
       },
     };
+  }
+
+  clickMyMovies() {
+    this.setState({
+      myMovies: null, // Forces a refresh in MyMovies
+      currentView: view.myMovies,
+    });
+  }
+
+  clickSearch() {
+    this.setState({
+      currentView: view.search,
+    });
   }
 
   render() {
@@ -62,11 +79,11 @@ class App extends React.Component {
           <ul>
             <li key={view.myMovies}
               className={this.state.currentView === view.myMovies ? 'active' : ''}
-              onClick={() => { this.setState({currentView: view.myMovies}); }}
+              onClick={this.clickMyMovies}
             >My Movies</li>
             <li key={view.search}
               className={this.state.currentView === view.search ? 'active' : ''}
-              onClick={() => { this.setState({currentView: view.search}); }}
+              onClick={this.clickSearch}
             >Search</li>
           </ul>
         </div>

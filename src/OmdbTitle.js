@@ -17,7 +17,7 @@ function OmdbTitle(props) {
   }
   return (
     <div className="OmdbTitle">
-      <div><img src={poster} /></div>
+      <div><img src={poster} alt={omdbTitle.Title} /></div>
       <table className="paleBlueRows">
       <tbody>
       <tr>
@@ -76,9 +76,9 @@ function OmdbTitle(props) {
         <th>Ratings</th>
         <td>
           <ul>
-            {omdbTitle.Ratings.map(r =>
-              <li key={r.Source}>{r.Value} ({r.Source})</li>
-            )}
+          {omdbTitle.Ratings.map(r =>
+            <li key={r.Source}>{r.Value} ({r.Source})</li>
+          )}
           </ul>
         </td>
       </tr>

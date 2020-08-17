@@ -8,12 +8,14 @@ import './button.css';
 function Search(props) {
   const app = props.app;
   const state = app.state;
-  const form = state.search.form;
-  const results = state.search.results;
+  const form = state.searchForm;
+  const results = state.searchResults;
 
   const updateForm = (key, value) => {
     form[key] = value;
-    app.setState(state);
+    app.setState({
+      searchForm: form,
+    });
   };
 
   const performSearch = async(e) => {
@@ -28,8 +30,9 @@ function Search(props) {
     const params = { searchText, type, year };
     const response = await axios.get(url, { params });
     const results = response.data.Response === 'True' ? response.data.Search: [];
-    state.search.results = results;
-    app.setState(state);
+    app.setState({
+      searchResults: results,
+    });
   };
 
   let content;
@@ -77,7 +80,7 @@ function Search(props) {
           value={form.year}
           onChange={e => updateForm('year', e.target.value) }
         />&nbsp;&nbsp;
-        <a href="#" className="button" onClick={performSearch}>
+        <a href="" className="button" onClick={performSearch}>
           search OMDB &gt;
         </a>
       </form>

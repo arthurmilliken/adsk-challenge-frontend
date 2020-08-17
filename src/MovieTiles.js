@@ -6,7 +6,6 @@ import './MovieTiles.css';
 
 function MovieTiles(props) {
   const app = props.app;
-  const state = app.state;
   const targetView = props.targetView;
   const movies = props.movies;
 
@@ -14,26 +13,20 @@ function MovieTiles(props) {
     if (targetView === view.searchDetail) {
       const url = `/api/omdb/${imdbID}`;
       const response = await axios.get(url);
-      console.log(url, response.data);
-      if (response.data && response.data.Response === 'True') {
-        state.search.detail = response.data;
-      }
-      else {
-        return alert(`Error calling ${url}: ${response.data}`);
-      }
+      return app.setState({
+        currentView: targetView,
+        searchDetail: response.data,
+      })
     }
     else {
       const url = `/api/myMovieList/${imdbID}`;
       const response = await axios.get(url);
-      if (response.data && response.data.Response === 'True') {
-        state.myMovies.detail = response.data;
-      }
-      else {
-        return alert(`Error calling ${url}: ${response.data}`);
-      }
+      console.log(url, response.data);
+      return app.setState({
+        currentView: targetView,
+        myMovieDetail: response.data,
+      });
     }
-    state.currentView = targetView;
-    app.setState(state);
   };
 
   return (
